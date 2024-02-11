@@ -22,18 +22,30 @@ bool isSorted(vector<int> v)
 	return v==sv;
 }
 
-int solve(vector<int> v)
+void solve()
 {
-	int ans = INT_MAX;
-	for(int i = 0;i<v.size();i++)
-	{
-		if(v[i]==0)
-			ans = 0;
+	int n;
+	cin>>n;
+	vector<int> v(n);
+	for(int i = 0;i<n;i++) cin>>v[i];
 
-		ans = min(ans,abs(v[i]));
+	string s = "";
+	vector<int> occur(26,0);
+
+	for(int i = 0;i<n;i++)
+	{
+		for(int j = 0;j<26;j++)
+		{
+			if(occur[j]==v[i])
+			{
+				s += (char)('a' + j);
+				occur[j]++;
+				break;
+			}
+		}
 	}
 
-	return ans;
+	cout<<s<<endl;
 }
 int main()
 {
@@ -41,8 +53,10 @@ int main()
 	freopen("input.txt","r",stdin); //file input.txt is opened in reading mode i.e "r"
 	freopen("output.txt","w",stdout);  //file output.txt is opened in writing mode i.e "w"
 	#endif
-	int n;
-	cin>>n;
-	vector<int> v = oneD(n);
-	cout<<solve(v)<<endl;
+	ll t;
+	cin>>t;
+	while(t--)
+	{
+		solve();
+	}
 }

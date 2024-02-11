@@ -22,18 +22,21 @@ bool isSorted(vector<int> v)
 	return v==sv;
 }
 
-int solve(vector<int> v)
+int solve(int n,string s)
 {
-	int ans = INT_MAX;
-	for(int i = 0;i<v.size();i++)
+	int i = 0;
+	int j = n-1;
+	while(i<j)
 	{
-		if(v[i]==0)
-			ans = 0;
-
-		ans = min(ans,abs(v[i]));
+		if(s[i]=='B' && s[j]=='B')
+			break;
+		else if(s[i]=='W')
+			i++;
+		else if(s[j]=='W')
+			j--;
 	}
 
-	return ans;
+	return j-i+1;
 }
 int main()
 {
@@ -41,8 +44,14 @@ int main()
 	freopen("input.txt","r",stdin); //file input.txt is opened in reading mode i.e "r"
 	freopen("output.txt","w",stdout);  //file output.txt is opened in writing mode i.e "w"
 	#endif
-	int n;
-	cin>>n;
-	vector<int> v = oneD(n);
-	cout<<solve(v)<<endl;
+	ll t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		string s;
+		cin>>s;
+		cout<<solve(n,s)<<endl;
+	}
 }
